@@ -72,6 +72,12 @@ void switch_on(_ekspres *ekspres)
 	FILE *f;
 	if ((f = fopen("data.txt", "r")) == NULL) {
 		printf("File not found!\n");
+		//wartosci poczatkowe, jezeli nie ma pliku "data" - symulacja tego, jakby ekspres byl swiezo z pudelka wyciagniety
+		ekspres->amount_of_coffee = 0;
+		ekspres->amount_of_water = 0;
+		ekspres->amount_of_milk = 0;
+		ekspres->power = 5;
+		ekspres->base_amount_of_water = 100;
 		return;
 	}
 
@@ -280,7 +286,9 @@ _states refill_coffee(_ekspres * ekspres)
 
 _states do_small_coffee(_ekspres * ekspres)
 {
-	int can = check_for_resources(*ekspres, ekspres->base_amount_of_water, (((10 - ekspres->power) * ekspres->base_amount_of_water) / 10), ((ekspres->power * ekspres->base_amount_of_water) / 10));
+	int can = check_for_resources(*ekspres, ekspres->base_amount_of_water
+		, (((10 - ekspres->power) * ekspres->base_amount_of_water) / 10)
+		, ((ekspres->power * ekspres->base_amount_of_water) / 10));
 	if (can == 1)
 	{
 		system("cls");
