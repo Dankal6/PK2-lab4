@@ -101,6 +101,7 @@ void show_ekspres(_ekspres ekspres)
 	printf("Bazowa wielkosc kawy: %i\n", ekspres.base_amount_of_water);
 }
 
+//uzupelnianie jest na polecenie uzytkownika
 void fill(_ekspres *ekspres, int what)
 {
 	float *resource = NULL;
